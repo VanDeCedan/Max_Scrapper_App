@@ -12,6 +12,7 @@ import sqlite3 as sql
 import streamlit as st
 import matplotlib.pyplot as plt
 from io import StringIO
+import os
 
 
 # Créer une base de données
@@ -43,7 +44,9 @@ def scrap_data(product,x,y):
     Returns:
         _type_: dataframe of all data scrapped
     """
-        # Create empty dataframe
+    # Ensure ChromeDriver has executable permissions
+    os.chmod("chromedriver-linux64/chromedriver", 0o755)
+    # Create empty dataframe
     df_c=pd.DataFrame()
     # loop over all pages
     for p in range(x,y+1):
