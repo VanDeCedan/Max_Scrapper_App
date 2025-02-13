@@ -56,9 +56,6 @@ def scrap_data(product,x,y):
         chrome_options = uc.ChromeOptions()
         # Path to binary location
         chrome_options.binary_location = "chromedriver-linux64/chromedriver"
-        chrome_options.add_argument("--headless")  # Run in headless mode
-        chrome_options.add_argument("--no-sandbox")
-        chrome_options.add_argument("--disable-dev-shm-usage")
         # Services
         chrome_services=Service("chromedriver-linux64/chromedriver")
         #Create a undetectable chrome driver
@@ -81,6 +78,11 @@ def scrap_data(product,x,y):
             try:
                 # Get the url of containers
                 url_container = container.find('a', class_ = 'listing-card__inner')['href']
+                chrome_options = uc.ChromeOptions()
+                # Path to binary location
+                chrome_options.binary_location = "chromedriver-linux64/chromedriver"
+                # Services
+                chrome_services=Service("chromedriver-linux64/chromedriver")
                 chrome.get(url_container)
                 time.sleep(20)
                 res_c = chrome.page_source
