@@ -2,7 +2,9 @@
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup as bs # permet de stocker le code html dans un objet beautifulsoup
-import selenium
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+import undetected_chromedriver as uc
 import time
 from undetected_chromedriver import Chrome
 import numpy as np
@@ -47,8 +49,10 @@ def scrap_data(product,x,y):
     for p in range(x,y+1):
         # Get the URL
         url="https://www.expat-dakar.com/{}?page={}".format(product,p)
+        # Set Chrome options
+        chrome_options = uc.ChromeOptions()
         #Create a undetectable chrome driver
-        chrome=Chrome()
+        chrome=uc.Chrome(options=chrome_options)
         # Get the URL infos
         chrome.get(url)
         # Wait for the page to load for 60 seconds to ensure pass the 'just a moment'
@@ -67,7 +71,8 @@ def scrap_data(product,x,y):
             try:
                 # Get the url of containers
                 url_container = container.find('a', class_ = 'listing-card__inner')['href']
-                chrome=Chrome()
+                chrome_options = uc.ChromeOptions()
+                chrome=uc.Chrome(options=chrome_options)
                 chrome.get(url_container)
                 time.sleep(20)
                 res_c = chrome.page_source
@@ -97,6 +102,8 @@ def scrap_data(product,x,y):
                 pass
             df=pd.DataFrame(data_list)
             df_c = pd.concat([df_c,df], axis = 0).reset_index(drop = True)
+        # Close the browser
+        chrome.quit()
     return df_c
 
 # download button
