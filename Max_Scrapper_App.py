@@ -51,11 +51,10 @@ def scrap_data(product,x,y):
         url="https://www.expat-dakar.com/{}?page={}".format(product,p)
         # Set Chrome options
         chrome_options = uc.ChromeOptions()
-        chrome_options.add_argument("--headless")  # Run in headless mode
-        # Set the path to ChromeDriver
-        service = Service("chromedriver-linux64/chromedriver")
+        # Path to binary location
+        chrome_options.binary_location = "chromedriver-linux64/chromedriver"
         #Create a undetectable chrome driver
-        chrome=uc.Chrome(service=service, options=chrome_options)
+        chrome=uc.Chrome(options=chrome_options)
         # Get the URL infos
         chrome.get(url)
         # Wait for the page to load for 60 seconds to ensure pass the 'just a moment'
@@ -75,11 +74,9 @@ def scrap_data(product,x,y):
                 # Get the url of containers
                 url_container = container.find('a', class_ = 'listing-card__inner')['href']
                 chrome_options = uc.ChromeOptions()
-                chrome_options.add_argument("--headless")  # Run in headless mode
-                # Set the path to ChromeDriver
-                service = Service("chromedriver-linux64/chromedriver")
+                chrome_options.binary_location = "chromedriver-linux64/chromedriver"
                 #Create a undetectable chrome driver
-                chrome=uc.Chrome(service=service, options=chrome_options)
+                chrome=uc.Chrome(options=chrome_options)
                 chrome.get(url_container)
                 time.sleep(20)
                 res_c = chrome.page_source
