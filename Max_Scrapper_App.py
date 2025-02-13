@@ -53,8 +53,7 @@ def scrap_data(product,x,y):
         chrome_options = uc.ChromeOptions()
         chrome_options.add_argument("--headless")  # Run in headless mode
         # Set the path to ChromeDriver
-        chrome_driver_path = "chromedriver-linux64/chromedriver"
-        service = Service(chrome_driver_path)
+        service = Service("chromedriver-linux64/chromedriver")
         #Create a undetectable chrome driver
         chrome=uc.Chrome(service=service, options=chrome_options)
         # Get the URL infos
