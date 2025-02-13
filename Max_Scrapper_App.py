@@ -51,8 +51,12 @@ def scrap_data(product,x,y):
         url="https://www.expat-dakar.com/{}?page={}".format(product,p)
         # Set Chrome options
         chrome_options = uc.ChromeOptions()
+        chrome_options.add_argument("--headless")  # Run in headless mode
+        # Set the path to ChromeDriver
+        chrome_driver_path = "chromedriver-linux64\chromedriver"
+        service = Service(chrome_driver_path)
         #Create a undetectable chrome driver
-        chrome=uc.Chrome(options=chrome_options)
+        chrome=uc.Chrome(service=service, options=chrome_options)
         # Get the URL infos
         chrome.get(url)
         # Wait for the page to load for 60 seconds to ensure pass the 'just a moment'
