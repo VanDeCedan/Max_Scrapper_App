@@ -53,7 +53,7 @@ def scrap_data(product,x,y):
         chrome_options = uc.ChromeOptions()
         chrome_options.add_argument("--headless")  # Run in headless mode
         # Set the path to ChromeDriver
-        chrome_driver_path = "chromedriver-linux64\chromedriver"
+        chrome_driver_path = "chromedriver-linux64/chromedriver"
         service = Service(chrome_driver_path)
         #Create a undetectable chrome driver
         chrome=uc.Chrome(service=service, options=chrome_options)
@@ -77,7 +77,7 @@ def scrap_data(product,x,y):
                 url_container = container.find('a', class_ = 'listing-card__inner')['href']
                 chrome_options.add_argument("--headless")  # Run in headless mode
                 # Set the path to ChromeDriver
-                chrome_driver_path = "chromedriver-linux64\chromedriver"
+                chrome_driver_path = "chromedriver-linux64/chromedriver"
                 service = Service(chrome_driver_path)
                 #Create a undetectable chrome driver
                 chrome=uc.Chrome(service=service, options=chrome_options)
@@ -138,7 +138,7 @@ def instantiate_scrapping(articles,table):
         con.close()
 
 def get_registred_data(filename):
-    df=pd.read_csv(f"data\{filename}.csv")
+    df=pd.read_csv(f"data/{filename}.csv")
     df=df.drop(df.columns[0],axis=1)
     df['prix']=pd.to_numeric(df['prix'].str.replace("F Cfa","").str.replace(' ','').str.replace(' ','').str.strip(),errors='coerce')
     return df
