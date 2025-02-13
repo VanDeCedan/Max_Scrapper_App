@@ -7,4 +7,3 @@ setuptools
 numpy
 streamlit
 matplotlib
-io
