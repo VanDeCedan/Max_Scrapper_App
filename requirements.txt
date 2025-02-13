@@ -1,0 +1,12 @@
+pandas
+requests
+bs4
+selenium
+time
+undetected_chromedriver
+setuptools
+numpy
+sqlite3
+streamlit
+matplotlib
+io
