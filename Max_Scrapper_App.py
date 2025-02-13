@@ -53,8 +53,10 @@ def scrap_data(product,x,y):
         chrome_options = uc.ChromeOptions()
         # Path to binary location
         chrome_options.binary_location = "chromedriver-linux64/chromedriver"
+        # Services
+        chrome_services=Service("chromedriver-linux64/chromedriver")
         #Create a undetectable chrome driver
-        chrome=uc.Chrome(options=chrome_options)
+        chrome=uc.Chrome(service=chrome_services, options=chrome_options)
         # Get the URL infos
         chrome.get(url)
         # Wait for the page to load for 60 seconds to ensure pass the 'just a moment'
