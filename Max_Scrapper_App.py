@@ -57,6 +57,8 @@ def scrap_data(product,x,y):
         # Path to binary location
         chrome_options.binary_location = "chromedriver-linux64/chromedriver"
         chrome_options.add_argument("--headless")  # Run in headless mode
+        chrome_options.add_argument("--no-sandbox")
+        chrome_options.add_argument("--disable-dev-shm-usage")
         # Services
         chrome_services=Service("chromedriver-linux64/chromedriver")
         #Create a undetectable chrome driver
